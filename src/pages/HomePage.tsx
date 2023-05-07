@@ -7,7 +7,7 @@ import { useDebounce } from "../hooks/useDebounce"
 import RepoCard from "../components/RepoCard"
 
 const HomePage = () => {
-  const [search, setSearch] = useState<string>("")
+  const [search, setSearch] = useState<string>("darnelo-inc")
   const [vis, setVis] = useState<boolean>(false)
   const debounce = useDebounce(search)
   const {
