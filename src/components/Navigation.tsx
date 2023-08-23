@@ -6,7 +6,7 @@ const Navigation = () => {
       <h3 className="font-bold">Github search</h3>
 
       <span>
-        <Link className="mr-2" to="/">
+        <Link className="mr-5" to="/">
           Home
         </Link>
         <Link to="/favs">Favorites</Link>

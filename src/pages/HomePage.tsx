@@ -5,6 +5,7 @@ import {
 } from "../store/API/githubAPI"
 import { useDebounce } from "../hooks/useDebounce"
 import RepoCard from "../components/RepoCard"
+import Notification from "../components/ui/Notification"
 
 const HomePage = () => {
   const [isFound, setIsFound] = useState<boolean>(false)
@@ -37,7 +38,7 @@ const HomePage = () => {
   }, [search])
 
   return (
-    <div className="flex justify-center h-screen w-screen mx-auto pt-10">
+    <div className="flex justify-center h-auto w-screen mx-auto pt-10">
       {isError && (
         <h2 className="text-center font-bold text-red-600">Error occured</h2>
       )}
@@ -75,6 +76,7 @@ const HomePage = () => {
           {repos?.map((repo) => (
             <RepoCard key={repo.id} repo={repo} />
           ))}
+          {repos && !repos.length && <Notification message="No reps to show" />}
         </div>
       </div>
     </div>
