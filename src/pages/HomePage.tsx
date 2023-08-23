@@ -7,6 +7,7 @@ import { useDebounce } from "../hooks/useDebounce"
 import RepoCard from "../components/RepoCard"
 
 const HomePage = () => {
+  const [isFound, setIsFound] = useState<boolean>(false)
   const [search, setSearch] = useState<string>("")
   const [vis, setVis] = useState<boolean>(false)
   const debounce = useDebounce(search)
@@ -24,12 +25,15 @@ const HomePage = () => {
   ] = useLazyFetchReposQuery()
 
   const clickHandler = (user: string) => {
-    getRepos(user)
     setVis(false)
+    setIsFound(true)
+    getRepos(user)
+    setSearch(user)
   }
 
   useEffect(() => {
-    setVis(search?.length > 3 ? true : false)
+    if (isFound) setIsFound(false)
+    setVis(search?.length > 2 && !isFound ? true : false)
   }, [search])
 
   return (
